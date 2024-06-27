@@ -12,12 +12,14 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.external.CharacterDataDto;
 import mate.academy.rickandmorty.dto.external.CharactersResponseDataDto;
 import mate.academy.rickandmorty.exceptions.DataProcessingException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
 public class CharacterClient {
-    private static final String BASE_URL = "https://rickandmortyapi.com/api/character?page=%d";
+    @Value("${rick-and-morty.url}")
+    private String baseUrl;
     private final ObjectMapper objectMapper;
     private final HttpClient httpClient = HttpClient.newHttpClient();
 
@@ -26,7 +28,7 @@ public class CharacterClient {
         int page = 1;
         try {
             while (true) {
-                String url = BASE_URL.formatted(page);
+                String url = baseUrl.formatted(page);
                 HttpRequest httpRequest = HttpRequest.newBuilder()
                         .GET()
                         .uri(URI.create(url))

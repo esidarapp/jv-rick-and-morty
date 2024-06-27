@@ -9,5 +9,4 @@ public record CharactersResponseDataDto(
         @JsonProperty("info")
         PageInfo info
 ){
-
 }

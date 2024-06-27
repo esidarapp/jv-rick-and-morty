@@ -3,7 +3,6 @@ package mate.academy.rickandmorty.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
-import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.internal.CharacterDto;
 import mate.academy.rickandmorty.service.CharacterService;
@@ -25,8 +24,7 @@ public class CharactersController {
             description = "Returns a character by random id")
     @GetMapping("/random")
     public CharacterDto findCharacterByRandomId() {
-        Random random = new Random();
-        return characterService.findById(random.nextLong(CHARACTERS_COUNT) + 1);
+        return characterService.findByRandomId();
     }
 
     @GetMapping("/searchByName")
@@ -35,5 +33,4 @@ public class CharactersController {
     public List<CharacterDto> searchByName(@RequestParam(defaultValue = "rick") String name) {
         return characterService.findCharactersByName(name);
     }
-
 }

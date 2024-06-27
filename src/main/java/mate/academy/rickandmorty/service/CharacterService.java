@@ -10,4 +10,6 @@ public interface CharacterService {
     CharacterDto findById(Long id);
 
     List<CharacterDto> findCharactersByName(String name);
+
+    CharacterDto findByRandomId();
 }

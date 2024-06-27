@@ -6,6 +6,4 @@ public record CharacterDataDto(
         String status,
         String gender
 ){
-
 }
-
